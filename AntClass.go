@@ -5,6 +5,7 @@ import "fmt"
 type Ant struct {
 	Name          int
 	SalleActuelle *Room
+	Chemin        []*Room
 }
 
 func (fourmie *Ant) GetSalle() []Room {
@@ -30,4 +31,12 @@ func (fourmie *Ant) Deplacer(nouvSalle Room) bool {
 	}
 
 	return false
+}
+func (fourmie *Ant) OnAvence() {
+
+	for i := 0; i < len(fourmie.Chemin); i++ {
+		if fourmie.Chemin[i].Name == fourmie.SalleActuelle.Name && !fourmie.SalleActuelle.End {
+			fourmie.Deplacer(*fourmie.Chemin[i+1])
+		}
+	}
 }
