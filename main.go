@@ -19,7 +19,7 @@ func main() {
 	kevin.Eclerage(tabDeRoom[0])
 	for _, i := range kevin.ListeDeChemin {
 		for _, j := range i {
-			fmt.Print(j.Name + " ")
+			fmt.Print(j.End, " ")
 		}
 		fmt.Println()
 	}
