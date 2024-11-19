@@ -186,8 +186,6 @@ func TrouverLiaison(filename string) [][]string {
 			if verifName(decoupage[0]) && verifName(decoupage[1]) {
 				Liaison = append(Liaison, decoupage)
 			}
-		} else {
-			log.Fatal("05.C movait format, Metez des conection de salle sous le format nom-nom, avec des nom diférent ")
 		}
 	}
 	if len(Liaison) == 0 {

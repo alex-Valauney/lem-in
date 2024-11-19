@@ -6,9 +6,9 @@ import (
 	"strings"
 )
 
-func CreateRoom(SalleStart string, SalleEnd string, TabSalle [][]string) []Room {
+func CreateRoom(SalleStart string, SalleEnd string, TabSalle [][]string) []*Room {
 
-	TabRoom := []Room{}
+	TabRoom := []*Room{}
 
 	TabRoom = append(TabRoom, CreateStart(SalleStart), CreateEnd(SalleEnd))
 
@@ -22,9 +22,9 @@ func CreateRoom(SalleStart string, SalleEnd string, TabSalle [][]string) []Room 
 
 	return TabRoom
 }
-func CreateRelation(TabRelation [][]string, TabSalle []Room) []Tunnels {
+func CreateRelation(TabRelation [][]string, TabSalle []*Room) []*Tunnels {
 
-	TabTunnel := []Tunnels{}
+	TabTunnel := []*Tunnels{}
 
 	for i := 0; i < len(TabRelation); i++ {
 
@@ -33,10 +33,10 @@ func CreateRelation(TabRelation [][]string, TabSalle []Room) []Tunnels {
 
 		for j := 0; j < len(TabSalle); j++ {
 			if TabSalle[j].Name == TabRelation[i][0] {
-				RoomA = &TabSalle[j]
+				RoomA = TabSalle[j]
 			}
 			if TabSalle[j].Name == TabRelation[i][1] {
-				RoomB = &TabSalle[j]
+				RoomB = TabSalle[j]
 			}
 		}
 
@@ -59,18 +59,18 @@ func CreateRelation(TabRelation [][]string, TabSalle []Room) []Tunnels {
 
 	return TabTunnel
 }
-func CreateFourmie(NbrFourmi int, start Room) []Ant {
-	TabFourmi := []Ant{}
+func CreateFourmie(NbrFourmi int, start *Room) []*Ant {
+	TabFourmi := []*Ant{}
 
 	for i := 0; i < NbrFourmi; i++ {
 		TabFourmi = append(TabFourmi, CreateKevin(TabFourmi, start))
 	}
 	return TabFourmi
 }
-func CreateTheRoom(name string, X int, Y int) Room {
-	return Room{name, X, Y, nil, false, false}
+func CreateTheRoom(name string, X int, Y int) *Room {
+	return &Room{name, X, Y, nil, false, false}
 }
-func CreateStart(salle string) Room {
+func CreateStart(salle string) *Room {
 
 	decoupage := strings.Split(salle, " ")
 
@@ -85,7 +85,7 @@ func CreateStart(salle string) Room {
 
 	return SalleStart
 }
-func CreateEnd(salle string) Room {
+func CreateEnd(salle string) *Room {
 
 	decoupage := strings.Split(salle, " ")
 
@@ -100,9 +100,9 @@ func CreateEnd(salle string) Room {
 
 	return SalleEnd
 }
-func CreateTheLiaison(SA *Room, SB *Room) Tunnels {
-	return Tunnels{SA, SB}
+func CreateTheLiaison(SA *Room, SB *Room) *Tunnels {
+	return &Tunnels{SA, SB}
 }
-func CreateKevin(TabFourmi []Ant, Start Room) Ant {
-	return Ant{len(TabFourmi) + 1, &Start, nil}
+func CreateKevin(TabFourmi []*Ant, Start *Room) *Ant {
+	return &Ant{len(TabFourmi) + 1, Start, nil}
 }

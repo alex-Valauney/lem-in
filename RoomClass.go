@@ -6,7 +6,7 @@ type Room struct {
 	Name    string
 	Xcoord  int
 	Ycoord  int
-	Tunnels []Tunnels
+	Tunnels []*Tunnels
 	Start   bool
 	End     bool
 }

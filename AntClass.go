@@ -28,7 +28,6 @@ func (fourmie *Ant) Deplacer(nouvSalle Room) bool {
 			return true
 		}
 	}
-
 	return false
 }
 func (fourmie *Ant) OnAvence() {
