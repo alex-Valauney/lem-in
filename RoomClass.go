@@ -15,7 +15,7 @@ func (R *Room) AffichageRoom() string {
 	strFinal := fmt.Sprintf("%s -> ", R.Name)
 
 	for _, s := range R.Tunnels {
-		salle := s.GetInconue(*R)
+		salle := s.GetInconue(R)
 		strFinal += fmt.Sprintf("<- %s ", salle.Name)
 	}
 

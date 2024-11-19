@@ -18,9 +18,9 @@ func NombreFourmi(filename string) int {
 	for scanner.Scan() {
 		text := scanner.Text()
 
-		if LigneDeFourmi, OnPasse := strconv.Atoi(text); OnPasse == nil {
+		if LigneNbrDeFourmi, OnPasse := strconv.Atoi(text); OnPasse == nil {
 			if v == 0 {
-				v = LigneDeFourmi
+				v = LigneNbrDeFourmi
 			} else {
 				log.Fatal("01.A movais format, metez qu'un nombre de fourmi")
 			}
@@ -180,18 +180,19 @@ func TrouverLiaison(filename string) [][]string {
 		decoupage := strings.Split(text, sep)
 
 		if len(decoupage) == 2 {
-			if verifName(decoupage[0]) && verifName(decoupage[1]) {
-				Liaison = append(Liaison, decoupage)
-			}
 			if !verifName2(decoupage) {
 				log.Fatal("05.A movait format ne métait pas deux foix le même nom dans la lieson")
 			}
+			if verifName(decoupage[0]) && verifName(decoupage[1]) {
+				Liaison = append(Liaison, decoupage)
+			}
+		} else {
+			log.Fatal("05.C movait format, Metez des conection de salle sous le format nom-nom, avec des nom diférent ")
 		}
 	}
 	if len(Liaison) == 0 {
 		log.Fatal("05 Metez des conection de salle sous le format nom-nom, avec des nom diférent")
 	}
-
 	if !verifName3(Liaison) {
 		log.Fatal("05.B movait format, metez un nom de salle définit plutôt")
 	}

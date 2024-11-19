@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"strconv"
 	"strings"
 )
@@ -38,12 +39,22 @@ func CreateRelation(TabRelation [][]string, TabSalle []Room) []Tunnels {
 				RoomB = &TabSalle[j]
 			}
 		}
-		LaLiaison := CreateTheLiaison(*RoomA, *RoomB)
+
+		LaLiaison := CreateTheLiaison(RoomA, RoomB)
 
 		RoomA.Tunnels = append(RoomA.Tunnels, LaLiaison)
 		RoomB.Tunnels = append(RoomB.Tunnels, LaLiaison)
 
 		TabTunnel = append(TabTunnel, LaLiaison)
+
+	}
+
+	for a := 0; a < len(TabTunnel); a++ {
+		for b := a + 1; b < len(TabTunnel); b++ {
+			if TabTunnel[a] == TabTunnel[b] {
+				log.Fatal("05.D movais format, ne metez pas plusieur fois le même tunel")
+			}
+		}
 	}
 
 	return TabTunnel
@@ -89,9 +100,9 @@ func CreateEnd(salle string) Room {
 
 	return SalleEnd
 }
-func CreateTheLiaison(SA Room, SB Room) Tunnels {
+func CreateTheLiaison(SA *Room, SB *Room) Tunnels {
 	return Tunnels{SA, SB}
 }
 func CreateKevin(TabFourmi []Ant, Start Room) Ant {
-	return Ant{len(TabFourmi) + 1, &Start}
+	return Ant{len(TabFourmi) + 1, &Start, nil}
 }

@@ -8,17 +8,16 @@ type Ant struct {
 	Chemin        []*Room
 }
 
-func (fourmie *Ant) GetSalle() []Room {
+func (fourmie *Ant) GetSalle() []*Room {
 
-	stock := []Room{}
+	stock := []*Room{}
 
 	for _, t := range fourmie.SalleActuelle.Tunnels {
-		stock = append(stock, t.GetInconue(*fourmie.SalleActuelle))
+		stock = append(stock, t.GetInconue(fourmie.SalleActuelle))
 	}
 
 	return stock
 }
-
 func (fourmie *Ant) Deplacer(nouvSalle Room) bool {
 
 	for _, s := range fourmie.GetSalle() {

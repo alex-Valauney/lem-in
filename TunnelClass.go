@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 type Tunnels struct {
-	SalleA Room
-	SalleB Room
+	SalleA *Room
+	SalleB *Room
 }
 
-func (T Tunnels) GetInconue(SalleConnue Room) Room {
+func (T Tunnels) GetInconue(SalleConnue *Room) *Room {
 
 	if SalleConnue.Name != T.SalleA.Name {
 		return T.SalleA
