@@ -13,7 +13,6 @@ type Scoot struct {
 }
 
 func (fourmie *Scoot) ListeDeSalle() []*Room {
-
 	stock := []*Room{}
 	for _, t := range fourmie.Position.Tunnels {
 		stock = append(stock, t.GetInconue(fourmie.Position))
@@ -32,8 +31,16 @@ func (fourmie *Scoot) Eclerage(nouvSalle *Room) {
 	scanner.Scan()
 
 	if fourmie.Position.End {
+		fourmie.ListeDeChemin = append(fourmie.ListeDeChemin, append([]*Room{}, fourmie.Chemin...))
 		fmt.Println("End Reached")
-		fourmie.ListeDeChemin = append(fourmie.ListeDeChemin, fourmie.Chemin)
+		fmt.Println()
+		for _, s := range fourmie.ListeDeChemin {
+			for _, c := range s {
+				fmt.Print(c.Name + " ")
+			}
+			fmt.Println()
+		}
+		fmt.Println()
 		return
 	} else {
 		for _, s := range fourmie.ListeDeSalle() {
