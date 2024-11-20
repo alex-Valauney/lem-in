@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 )
 
 type Scoot struct {
@@ -26,18 +24,9 @@ func (fourmie *Scoot) Eclerage(nouvSalle *Room) {
 	for _, s := range fourmie.Chemin {
 		fmt.Print(s.Name + " ")
 	}
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
 	if fourmie.Position.End {
 		fourmie.ListeDeChemin = append(fourmie.ListeDeChemin, append([]*Room{}, fourmie.Chemin...))
 		fmt.Println("End Reached")
-		fmt.Println()
-		for _, s := range fourmie.ListeDeChemin {
-			for _, c := range s {
-				fmt.Print(c.Name + " ")
-			}
-			fmt.Println()
-		}
 		fmt.Println()
 		return
 	} else {

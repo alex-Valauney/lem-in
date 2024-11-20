@@ -12,12 +12,11 @@ func main() {
 	}
 	file := Lecture()
 	tabDeRoom := CreateRoom(SalleStart(file), SalleEnd(file), TrouverSalle(file))
-	/*tadDeRelation := */ CreateRelation(TrouverLiaison(file), tabDeRoom)
-	/*tabDeFourmie := */ CreateFourmie(NombreFourmi(file), tabDeRoom[0])
+	CreateRelation(TrouverLiaison(file), tabDeRoom)
+	CreateFourmie(NombreFourmi(file), tabDeRoom[0])
 
 	kevin := Scoot{nil, nil, nil}
 	kevin.Eclerage(tabDeRoom[0])
-	fmt.Println()
 	for _, i := range kevin.ListeDeChemin {
 		for _, j := range i {
 			fmt.Print(j.Name, " ")
@@ -25,17 +24,9 @@ func main() {
 		fmt.Println()
 	}
 
+	fmt.Println(TriDeChemin(kevin.ListeDeChemin))
+
 	fmt.Println()
-	/*for _, r := range tabDeRoom {
-		fmt.Println(r.AffichageRoom())
-	}
-	fmt.Println()
-	for _, t := range tadDeRelation {
-		fmt.Println(t.Affichagetunnel())
-	}
-	fmt.Println()
-	fmt.Println(tabDeFourmie)
-	fmt.Println()*/
 	fmt.Println(time.Since(timer))
 	fmt.Println()
 }
