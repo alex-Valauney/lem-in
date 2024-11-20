@@ -23,13 +23,11 @@ func (fourmie *Scoot) ListeDeSalle() []*Room {
 func (fourmie *Scoot) Eclerage(nouvSalle *Room) {
 	fourmie.Position = nouvSalle
 	fourmie.Chemin = append(fourmie.Chemin, nouvSalle)
-
 	for _, s := range fourmie.Chemin {
 		fmt.Print(s.Name + " ")
 	}
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
-
 	if fourmie.Position.End {
 		fourmie.ListeDeChemin = append(fourmie.ListeDeChemin, append([]*Room{}, fourmie.Chemin...))
 		fmt.Println("End Reached")
